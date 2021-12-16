@@ -3,6 +3,7 @@
 #Date - 16/12/2021
 
 import psutil						
+import plyer.platforms.win.notification
 from plyer import notification
 import time
 import datetime
@@ -10,14 +11,15 @@ import datetime
 batHigh = 95	#Battery percentage above which you get a notification
 batLow = 20		#Battery percentage below which you get a notification
 
+
 while(1):
 	ct = datetime.datetime.now()
 	battery = psutil.sensors_battery()
 	plug = battery.power_plugged
 	if battery.percent > batHigh and plug == True:
-		notification.notify(title="Battery Update",message="Battery fully Charged remove Charger", app_name = "Battery Logger")
+		notification.notify(title="Battery Update",message="Battery fully Charged remove Charger")
 	elif battery.percent < batLow and plug == False:
-		notification.notify(title="Battery Update",message="Battery Discharged connect Charger", app_name = "Battery Logger")
+		notification.notify(title="Battery Update",message="Battery Discharged connect Charger")
 	
 	#Print statement for debugging if needed
 	#print("Battery Status:\nPlugged In: " + str(plug) + "\nPercentage: " + str(battery.percent) + "\nTime: " + str(ct.time()))
